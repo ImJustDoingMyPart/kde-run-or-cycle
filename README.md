@@ -35,46 +35,42 @@ chmod +x ~/.local/bin/run-or-cycle.sh
 
 ## Usage
 
-```bash
-run-or-cycle.sh <window-class> <command>
-```
+1. Open **System Settings → Keyboard → Shortcuts**
+2. Click **Add New → Command or Script**
+3. In the command field, enter the full path to the script followed by the window class and launch command:
+   ```
+   /home/youruser/.local/bin/run-or-cycle.sh brave-browser brave
+   ```
+4. Click **Add custom shortcut** and press your desired key combination
 
-- `window-class` — the window class name to match (used by `kdotool search --class`)
-- `command` — the command to launch the app if no window exists
+That's it. The same shortcut will launch the app, focus it, or cycle between its windows.
 
-### Examples
+### Example shortcuts
 
 | App | Command |
 |-----|---------|
-| Brave | `run-or-cycle.sh brave-browser brave` |
-| Konsole | `run-or-cycle.sh konsole konsole` |
-| Dolphin | `run-or-cycle.sh dolphin dolphin` |
-| Firefox | `run-or-cycle.sh firefox firefox` |
-| VS Code | `run-or-cycle.sh code code` |
+| Brave | `/home/youruser/.local/bin/run-or-cycle.sh brave-browser brave` |
+| Konsole | `/home/youruser/.local/bin/run-or-cycle.sh konsole konsole` |
+| Dolphin | `/home/youruser/.local/bin/run-or-cycle.sh dolphin dolphin` |
+| Firefox | `/home/youruser/.local/bin/run-or-cycle.sh firefox firefox` |
+| VS Code | `/home/youruser/.local/bin/run-or-cycle.sh code code` |
 
-### Finding the window class
+### Finding the window class for any app
 
-To find the correct class name for any app:
+To find the correct class name for an app you want to add:
 
 ```bash
 # Focus the app window, then run:
 kdotool getactivewindow
 # Returns something like: {4bb44a33-a5d6-4cca-9bb9-10bc9a3ec0f5}
 
-# Try searching by app name:
+# Search by app name to verify:
 kdotool search --class <app-name>
 ```
 
-## Setting up keyboard shortcuts
-
-### KDE System Settings
-
-1. Go to **System Settings → Shortcuts → Custom Shortcuts**
-2. Add a new shortcut (or edit an existing one)
-3. Set the **Command** to: `run-or-cycle.sh brave-browser brave`
-4. Assign your preferred key combination
-
 ### Hyprland
+
+If you use Hyprland instead of KDE, add binds to your config:
 
 ```ini
 bind = $mainMod, B, exec, ~/.local/bin/run-or-cycle.sh brave-browser brave
