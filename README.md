@@ -19,6 +19,9 @@ Uses [kdotool](https://github.com/jinliu/kdotool) for Wayland-native window mana
 # Arch / CachyOS
 pacman -S kdotool
 
+# Fedora
+sudo dnf install kdotool
+
 # Or build from source — see https://github.com/jinliu/kdotool
 ```
 
@@ -66,6 +69,12 @@ kdotool getactivewindow
 
 # Search by app name to verify:
 kdotool search --class <app-name>
+
+# or just list all open:
+for wid in $(kdotool search --name '.*'); do
+    printf '%s  ' "$wid"
+    kdotool getwindowclassname "$wid"
+done
 ```
 
 ### Hyprland
