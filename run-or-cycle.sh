@@ -7,8 +7,16 @@
 #   window-class  The window class to search for (e.g. brave-browser, konsole, dolphin)
 #   command       The command to launch the app if no window is found
 
-CLASS=$1
-CMD=$2
+# Remove leading and trailing whitespace from a string.
+trim() {
+    local value="$1"
+    value="${value#"${value%%[![:space:]]*}"}"
+    value="${value%"${value##*[![:space:]]}"}"
+    printf '%s' "$value"
+}
+
+CLASS=$(trim "${1-}")
+CMD=$(trim "${2-}")
 
 if [ -z "$CLASS" ] || [ -z "$CMD" ]; then
     echo "Usage: run-or-cycle.sh <window-class> <command>" >&2
